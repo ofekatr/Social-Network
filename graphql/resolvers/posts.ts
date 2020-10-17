@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('apollo-server');
+const { UserInputError, AuthenticationError } = require('apollo-server');
 
 const Post = require('../../models/Post');
 const authenticate = require('../../utils/check-auth');
@@ -22,7 +22,7 @@ module.exports = {
                 if (post) {
                     return post;
                 }
-                throw new Error('Post does not exist.');
+                throw new UserInputError('Post does not exist.');
             } catch (err) {
                 throw new Error(err);
             }
@@ -37,9 +37,12 @@ module.exports = {
                 username: user.username,
                 createdDate: new Date().toISOString()
             });
-
-            const post = await newPost.save();
-            return post;
+            try {
+                const post = await newPost.save();
+                return post;
+            } catch (err){
+                throw new Error(err);
+            }
         },
         async deletePost(_, { postId }, context) {
             const user = authenticate(context);
@@ -49,15 +52,10 @@ module.exports = {
                     await post.delete();
                     return 'Post deleted successfully.';
                 }
-                throw new Error('Post does not belong to this user.');
+                throw new AuthenticationError('Post does not belong to this user.');
             } catch (err) {
                 throw new Error(err);
             };
         }
-        // async createComment(_, commentInput: {
-        //     username: string, body: string
-        // }, context) {
-            
-        // }
     }
 };

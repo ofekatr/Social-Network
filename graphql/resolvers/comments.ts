@@ -1,7 +1,7 @@
 const { UserInputError, AuthenticationError } = require('apollo-server');
 
 const Post = require('../../models/Post');
-const { validateCommentInput } = require('../../utils/validators');
+const { validateCommentInput } = require('../../utils/validators/index');
 const authenticate = require('../../utils/check-auth');
 
 export { };
@@ -34,7 +34,6 @@ module.exports = {
             const { username } = authenticate(context);
             const post = await Post.findById(postId);
             if (post) {
-                console.log(post.comments);
                 const commentInd = post.comments.findIndex((c) => c.id === commentId);
                 if (commentInd !== -1) {
                     const commentUsername = post.comments[commentInd].username

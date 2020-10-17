@@ -6,7 +6,7 @@ const { UserInputError } = require('apollo-server');
 
 const { JWT_KEY } = require('../../config');
 const User = require('../../models/User');
-const { validateRegisterInput, validateLoginInput } = require('../../utils/validators');
+const { validateRegisterInput, validateLoginInput } = require('../../utils/validators/login');
 
 export { }
 
