@@ -54,5 +54,10 @@ module.exports = {
                 throw new Error(err);
             };
         }
+        // async createComment(_, commentInput: {
+        //     username: string, body: string
+        // }, context) {
+            
+        // }
     }
 };

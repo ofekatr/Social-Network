@@ -1,11 +1,11 @@
 export { }
 
-module.exports.validateRegisterInput = (
+function validateRegisterInput(
     username: string,
     email: string,
     password: string,
     confirmPassword: string
-) => {
+) {
     const errors: any = {};
     validateUsername(username, errors);
     validateEmail(email, errors);
@@ -14,19 +14,33 @@ module.exports.validateRegisterInput = (
         errors,
         valid: Object.keys(errors).length < 1
     };
-};
+}
 
-module.exports.validateLoginInput = (
+function validateLoginInput(
     username: string,
     password: string
-) => {
+){
     const errors: any = {};
     validateUsername(username, errors);
     validatePassword(password, errors);
     return {
         valid: Object.keys(errors).length < 1,
         errors
-    }
+    };
+}
+
+function validateCommentInput(
+    postId: string,
+    body: string
+){
+    const errors: any = {};
+    validatePostId(postId, errors);
+    validateBody(body, errors);
+
+    return {
+        errors,
+        valid: Object.keys(errors).length < 1
+    };
 }
 
 const validateEmail = (email: string, errors: any) => {
@@ -37,6 +51,12 @@ const validateEmail = (email: string, errors: any) => {
         if (!email.match(regEx)) {
             errors.email = 'Email address is invalid.';
         }
+    }
+};
+
+const validatePostId = (postId: string, errors: any) => {
+    if (isEmptyRemoveWhiteSpace(postId)) {
+        errors.username = 'Post ID must not be empty.';
     }
 };
 
@@ -54,5 +74,17 @@ const validatePassword = (password: string, errors: any, confirmPassword?: strin
     }
 };
 
+const validateBody = (body: string, errors: any) => {
+    if (isEmptyRemoveWhiteSpace(body)){
+        errors.body = 'Body must not be empty.';
+    }
+}
+
 const isEmptyRemoveWhiteSpace = (str: string) => str.trim() === '';
 const isEmptyAllowWhiteSpace = (str: string) => str === '';
+
+module.exports = {
+    validateRegisterInput,
+    validateLoginInput,
+    validateCommentInput
+}
