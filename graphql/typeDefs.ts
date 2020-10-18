@@ -10,7 +10,9 @@ module.exports = gql`
     username: String!
     createdDate: String!
     comments: [Comment]!
+    commentCount: Int!
     likes: [Like]!
+    likeCount: Int!
   }
 
   type Comment {
@@ -54,6 +56,10 @@ module.exports = gql`
   type Query {
     getPosts: [Post]
     getPost(postId: ID!): Post
+  }
+
+  type Subscription {
+    newPost: Post!
   }
 
   type Mutation {

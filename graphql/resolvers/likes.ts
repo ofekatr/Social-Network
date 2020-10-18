@@ -9,25 +9,27 @@ module.exports = {
     Mutation: {
         async likePost(_, { postId }, context) {
             const { username } = authenticate(context);
-            const post = await Post.findById(postId);
-            if (post) {
-                const likeInd = post.likes.findIndex((l) => {
-                    console.log(username, l.username);
-                    return l.username === username
-                });
-                console.log(likeInd);
-                if (likeInd === -1) {
-                    post.likes.unshift({
-                        username,
-                        createdDate: new Date().toISOString()
+            try {
+                const post = await Post.findById(postId);
+                if (post) {
+                    const likeInd = post.likes.findIndex((l) => {
+                        return l.username === username
                     });
-                } else {
-                    post.likes.splice(likeInd, 1);
+                    if (likeInd === -1) {
+                        post.likes.push({
+                            username,
+                            createdDate: new Date().toISOString()
+                        });
+                    } else {
+                        post.likes.splice(likeInd, 1);
+                    }
+                    await post.save();
+                    return post;
                 }
-                await post.save();
-                return post;
+                throw new UserInputError('Post does not exist.');
+            } catch (err) {
+                throw new Error(err);
             }
-            throw new UserInputError('Post does not exist.');
         }
     }
 }

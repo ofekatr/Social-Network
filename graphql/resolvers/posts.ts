@@ -2,6 +2,7 @@ const { UserInputError, AuthenticationError } = require('apollo-server');
 
 const Post = require('../../models/Post');
 const authenticate = require('../../utils/check-auth');
+const { PUBSUB_STRINGS: { NEW_POST }} = require('../../config');
 
 export { };
 
@@ -35,10 +36,13 @@ module.exports = {
                 body,
                 user: user.id,
                 username: user.username,
-                createdDate: new Date().toISOString()
+                createdDate: new Date().toISOString(),
             });
             try {
                 const post = await newPost.save();
+                context.pubsub.publish(NEW_POST, {
+                    newPost: post
+                });
                 return post;
             } catch (err) {
                 throw new Error(err);
@@ -57,5 +61,10 @@ module.exports = {
                 throw new Error(err);
             };
         }       
+    },
+    Subscription: {
+        newPost: {
+            subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator(NEW_POST)
+        }
     }
 };
