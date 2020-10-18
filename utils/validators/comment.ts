@@ -1,11 +1,23 @@
 const { isEmptyRemoveWhiteSpace } = require('./utils');
 
-export {};
+export { };
+
+function validatePostInput(
+    body: string
+) {
+    const errors: any = {};
+    validateBody(body, errors);
+
+    return {
+        errors,
+        valid: Object.keys(errors).length < 1
+    };
+}
 
 function validateCommentInput(
     postId: string,
     body: string
-){
+) {
     const errors: any = {};
     validatePostId(postId, errors);
     validateBody(body, errors);
@@ -23,11 +35,12 @@ const validatePostId = (postId: string, errors: any) => {
 };
 
 const validateBody = (body: string, errors: any) => {
-    if (isEmptyRemoveWhiteSpace(body)){
+    if (isEmptyRemoveWhiteSpace(body)) {
         errors.body = 'Body must not be empty.';
     }
 }
 
 module.exports = {
-    validateCommentInput
+    validateCommentInput,
+    validatePostInput
 }

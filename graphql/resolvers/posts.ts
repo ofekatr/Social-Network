@@ -1,6 +1,7 @@
 const { UserInputError, AuthenticationError } = require('apollo-server');
 
 const Post = require('../../models/Post');
+const { validatePostInput } = require('../../utils/validators');
 const authenticate = require('../../utils/check-auth');
 const { PUBSUB_STRINGS: { NEW_POST }} = require('../../config');
 
@@ -32,6 +33,10 @@ module.exports = {
     Mutation: {
         async createPost(_, { body }, context) {
             const user = authenticate(context);
+            const { errors, valid } = validatePostInput(body);
+            if (!valid){
+                throw new UserInputError('Invalid input.', { errors });
+            }
             const newPost = new Post({
                 body,
                 user: user.id,
