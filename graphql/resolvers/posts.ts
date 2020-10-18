@@ -3,7 +3,7 @@ const { UserInputError, AuthenticationError } = require('apollo-server');
 const Post = require('../../models/Post');
 const { validatePostInput } = require('../../utils/validators');
 const authenticate = require('../../utils/check-auth');
-const { PUBSUB_STRINGS: { NEW_POST }} = require('../../config');
+const { PUBSUB_STRINGS: { NEW_POST } } = require('../../config');
 
 export { };
 
@@ -34,7 +34,7 @@ module.exports = {
         async createPost(_, { body }, context) {
             const user = authenticate(context);
             const { errors, valid } = validatePostInput(body);
-            if (!valid){
+            if (!valid) {
                 throw new UserInputError('Invalid input.', { errors });
             }
             const newPost = new Post({
@@ -65,11 +65,11 @@ module.exports = {
             } catch (err) {
                 throw new Error(err);
             };
-        }       
+        }
     },
     Subscription: {
         newPost: {
-            subscribe: (_: any, __: any, { pubsub }: any) => pubsub.asyncIterator(NEW_POST)
+            subscribe: (_, __, { pubsub }: any) => pubsub.asyncIterator(NEW_POST)
         }
     }
 };
