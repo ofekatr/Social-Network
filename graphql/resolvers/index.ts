@@ -1,6 +1,7 @@
 const postsResolvers = require('./posts');
 const usersResolvers = require('./users');
 const commentResolvers = require('./comments');
+const likeResolvers = require('./likes');
 
 export {};
 
@@ -11,6 +12,7 @@ module.exports = {
     Mutation: {
         ...usersResolvers.Mutation,
         ...postsResolvers.Mutation,
-        ...commentResolvers.Mutation
+        ...commentResolvers.Mutation,
+        ...likeResolvers.Mutation
     }
-}
+};

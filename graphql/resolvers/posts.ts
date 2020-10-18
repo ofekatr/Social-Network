@@ -40,7 +40,7 @@ module.exports = {
             try {
                 const post = await newPost.save();
                 return post;
-            } catch (err){
+            } catch (err) {
                 throw new Error(err);
             }
         },
@@ -56,6 +56,6 @@ module.exports = {
             } catch (err) {
                 throw new Error(err);
             };
-        }
+        }       
     }
 };
