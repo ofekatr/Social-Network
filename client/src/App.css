@@ -9,3 +9,8 @@
     width: 25vw;
     margin: auto;
 }
+
+.post-input {
+    width: 40vw;
+    height: 10vh;
+}

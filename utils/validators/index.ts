@@ -1,10 +1,11 @@
 const { validateRegisterInput, validateLoginInput } = require('./login');
-const { validateCommentInput } = require('./comment');
+const { validateCommentInput, validatePostInput } = require('./comment');
 
 export { }
 
 module.exports = {
     validateRegisterInput,
     validateLoginInput,
-    validateCommentInput
+    validateCommentInput,
+    validatePostInput
 }
