@@ -1,11 +1,13 @@
 import gql from "graphql-tag";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { Button, Form } from "semantic-ui-react";
 
 import { useForm } from "../utils/hooks";
+import { AuthContext } from "../context/auth";
 
 export default (props) => {
+  const context = useContext(AuthContext);
   const [errors, setErrors]: any = useState({});
 
   const { onChange, onSubmit, inputs } = useForm(() => login(), {
@@ -14,16 +16,8 @@ export default (props) => {
   });
 
   const LOGIN_USER = gql`
-    mutation login(
-      $username: String!
-      $password: String!
-    ) {
-      login(
-        loginInput: {
-          username: $username
-          password: $password
-        }
-      ) {
+    mutation login($username: String!, $password: String!) {
+      login(loginInput: { username: $username, password: $password }) {
         id
         email
         username
@@ -34,8 +28,8 @@ export default (props) => {
   `;
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    update: (_, result) => {
-      console.log(result);
+    update: (_, { data: { login: userData } }) => {
+      context.login(userData);
       props.history.push("/");
     },
     onError: (err) => {
@@ -44,7 +38,7 @@ export default (props) => {
     variables: { ...inputs },
   });
 
-  function login(){
+  function login() {
     loginUser();
   }
 

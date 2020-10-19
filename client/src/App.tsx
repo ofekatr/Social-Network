@@ -10,16 +10,21 @@ import Register from "./pages/Register";
 import Menubar from "./components/semantic-ui/Menubar";
 import Container from "./components/semantic-ui/Container";
 
+import { AuthContextProvider } from "./context/auth";
+import AuthRoute from "./components/AuthRoute";
+
 function App() {
   return (
-    <Router>
-      <Container>
-        <Menubar />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-      </Container>
-    </Router>
+    <AuthContextProvider>
+      <Router>
+        <Container>
+          <Menubar />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <AuthRoute exact path="/register" component={Register} />
+        </Container>
+      </Router>
+    </AuthContextProvider>
   );
 }
 
