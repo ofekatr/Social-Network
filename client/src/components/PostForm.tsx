@@ -49,8 +49,9 @@ export default () => {
           placeholder={`${username}, What's on your mind?`}
           onChange={onChange}
           className="form-container"
+          error={!!error}
         />
-        <Button size="big" type="submit" primary>
+        <Button size="big" type="submit" color="teal">
           Post
         </Button>
       </Form>

@@ -58,13 +58,6 @@ const REGISTER_USER = gql`
     }
   `;
 
-export {
-    ADD_POST,
-    FETCH_POSTS_QUERY,
-    LOGIN_USER,
-    REGISTER_USER
-}
-
 const ADD_POST = gql`
           mutation createPost($body: String!) {
               createPost(body: $body) {
@@ -88,3 +81,21 @@ const ADD_POST = gql`
               }
           }
       `;
+
+const LIKE_POST = gql`
+  mutation likePost($postId: ID!){
+    likePost(postId: $postId){
+      id
+      username
+      createdDate
+    }
+  }
+`;
+
+export {
+  ADD_POST,
+  FETCH_POSTS_QUERY,
+  LOGIN_USER,
+  REGISTER_USER,
+  LIKE_POST
+}

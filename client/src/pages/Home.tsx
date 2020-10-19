@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { Grid } from "semantic-ui-react";
+import { Grid, Transition } from "semantic-ui-react";
 
 import PostForm from "../components/PostForm";
 import { AuthContext } from "../context/auth";
@@ -30,11 +30,14 @@ export default () => {
           {loading ? (
             <h1>Loading...</h1>
           ) : (
-            data.getPosts.map((post: any) => (
-              <Grid.Column key={post.id}>
-                <PostCard post={post} />
-              </Grid.Column>
-            ))
+            <Transition.Group>
+              {data.getPosts &&
+                data.getPosts.map((post: any) => (
+                  <Grid.Column key={post.id}>
+                    <PostCard post={post} />
+                  </Grid.Column>
+                ))}
+            </Transition.Group>
           )}
         </Grid.Row>
       </Grid>
