@@ -28,7 +28,7 @@ module.exports = {
                 }
                 throw new UserInputError('Post does not exist.');
             } catch (err) {
-                throw new Error(err);
+                throw err;
             }
         }
     }

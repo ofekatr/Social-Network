@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Icon, Label } from "semantic-ui-react";
+import { Button, Card, Icon, Label, Image } from "semantic-ui-react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
@@ -17,11 +17,11 @@ export default ({
   <div>
     <Card fluid>
       <Card.Content>
-        {/* <Image
+        <Image
           floated="right"
           size="mini"
-          src="/images/avatar/large/steve.jpg"
-        /> */}
+          src="https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
+        />
         <Card.Header>{username}</Card.Header>
         <Card.Meta as={Link} to={`/posts/${id}`}>
           {moment(createdDate).fromNow()}

@@ -14,7 +14,7 @@ module.exports = {
                 const posts = await Post.find().sort({ createdDate: -1 });
                 return posts;
             } catch (err) {
-                throw new Error(err);
+                throw err;
             }
         },
 
@@ -26,7 +26,7 @@ module.exports = {
                 }
                 throw new UserInputError('Post does not exist.');
             } catch (err) {
-                throw new Error(err);
+                throw err;
             }
         }
     },
@@ -50,7 +50,7 @@ module.exports = {
                 });
                 return post;
             } catch (err) {
-                throw new Error(err);
+                throw err;
             }
         },
         async deletePost(_, { postId }, context) {
@@ -63,7 +63,7 @@ module.exports = {
                 }
                 throw new AuthenticationError('Post does not belong to this user.');
             } catch (err) {
-                throw new Error(err);
+                throw err;
             };
         }
     },

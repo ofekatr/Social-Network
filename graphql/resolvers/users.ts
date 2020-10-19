@@ -1,5 +1,3 @@
-import { addErrorLoggingToSchema } from "apollo-server";
-
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server');
@@ -45,7 +43,7 @@ module.exports = {
                     token
                 };
             } catch (err) {
-                throw new Error(err);
+                throw err;
             }
         },
 
@@ -62,11 +60,8 @@ module.exports = {
             try {
                 const user = await User.findOne({ username })
                 if (user) {
-                    throw new UserInputError('Username is taken.', {
-                        errors: {
-                            username: 'This username is already taken.'
-                        }
-                    })
+                    errors.username = 'Username is taken.';
+                    throw new UserInputError('Username is server.', { errors });
                 }
                 // Hash the password and create an auth token
                 password = await bcrypt.hash(password, 12);
@@ -85,8 +80,10 @@ module.exports = {
                     id: res._id,
                     token,
                 };
-            } catch (err) {
-                throw new Error(err);
+            }
+            
+            catch (err) {
+                throw err;
             }
     
         }
