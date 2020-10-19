@@ -1,5 +1,5 @@
 import React, { useState, MouseEvent, useContext } from "react";
-import { Menu, MenuItemProps, Segment } from "semantic-ui-react";
+import { Menu, MenuItemProps } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../context/auth";

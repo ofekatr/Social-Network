@@ -12,9 +12,7 @@ module.exports = {
             try {
                 const post = await Post.findById(postId);
                 if (post) {
-                    const likeInd = post.likes.findIndex((l) => {
-                        return l.username === username
-                    });
+                    const likeInd = post.likes.findIndex((l) => l.username === username);
                     if (likeInd === -1) {
                         post.likes.push({
                             username,
