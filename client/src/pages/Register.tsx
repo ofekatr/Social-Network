@@ -5,6 +5,7 @@ import { Button, Form } from "semantic-ui-react";
 
 import { useForm } from "../utils/hooks";
 import { AuthContext } from "../context/auth";
+import { REGISTER_USER } from "../utils/gqlQuerries";
 
 export default (props) => {
   const { login } = useContext(AuthContext);
@@ -16,30 +17,6 @@ export default (props) => {
     password: "",
     confirmPassword: "",
   });
-
-  const REGISTER_USER = gql`
-    mutation register(
-      $username: String!
-      $email: String!
-      $password: String!
-      $confirmPassword: String!
-    ) {
-      register(
-        registerInput: {
-          username: $username
-          email: $email
-          password: $password
-          confirmPassword: $confirmPassword
-        }
-      ) {
-        id
-        email
-        username
-        createdDate
-        token
-      }
-    }
-  `;
 
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
     update: (_, { data: { register: userData } }) => {
