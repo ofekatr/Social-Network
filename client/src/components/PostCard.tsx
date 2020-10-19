@@ -27,7 +27,7 @@ export default ({
           <Card.Description>{body}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <LikeButton post={{ id, likeCount, likes }}/>
+          <LikeButton user={user} post={{ id, likeCount, likes }}/>
           <Button as="div" labelPosition="right">
             <Button color="blue" size="tiny" basic as={Link} to={`/post/${id}`}>
               <Icon name="comments" />
