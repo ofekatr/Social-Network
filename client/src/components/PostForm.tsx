@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { useMutation } from "@apollo/react-hooks";
-import lodash from 'lodash';
+import lodash from "lodash";
 
 import { useForm } from "../utils/hooks";
 import { AuthContext } from "../context/auth";
@@ -15,15 +15,18 @@ export default () => {
     body: "",
   });
 
-  const [add, { loading }] = useMutation(ADD_POST, {
+  const [add, { loading, error }] = useMutation(ADD_POST, {
     variables: { ...inputs },
     update(proxy, result) {
-      const data: any = lodash.cloneDeep(proxy.readQuery({
-        query: FETCH_POSTS_QUERY
-      }));
+      const data: any = lodash.cloneDeep(
+        proxy.readQuery({
+          query: FETCH_POSTS_QUERY,
+        })
+      );
       data.getPosts = [result.data.createPost, ...data.getPosts];
       proxy.writeQuery({
-        query: FETCH_POSTS_QUERY, data
+        query: FETCH_POSTS_QUERY,
+        data,
       });
       inputs.body = "";
     },
@@ -51,6 +54,13 @@ export default () => {
           Post
         </Button>
       </Form>
+      {error && (
+        <div className="ui error message">
+          <ul className="list">
+            {error.graphQLErrors[0].message}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
