@@ -6,7 +6,6 @@ function Menubar() {
   const pathname = window.location.pathname.substr(1);
   const path = pathname === '' ? 'home' : pathname;
   const [activeItem, setActiveItem] = useState<string>(path);
-  console.log(path);
 
   const handleItemClick = (
     e: MouseEvent<HTMLAnchorElement>,

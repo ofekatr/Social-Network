@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
+    "@types/semantic-ui": "^2.2.7",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
@@ -20,6 +21,7 @@
     "bcryptjs": "^2.4.3",
     "graphql": "^15.3.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.10.9"
   },
   "devDependencies": {
