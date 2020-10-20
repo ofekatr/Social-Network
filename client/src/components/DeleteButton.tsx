@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/react-hooks";
 import React, { useState } from "react";
-import { Button, Icon, Confirm } from "semantic-ui-react";
+import { Button, Icon, Confirm  } from "semantic-ui-react";
 import lodash from "lodash";
 
 import {
@@ -8,6 +8,7 @@ import {
   DELETE_COMMENT,
   FETCH_POSTS_QUERY,
 } from "../utils/gqlQuerries";
+import InvertedPopup from "./InvertedPopup";
 
 export default (params) => {
   const {
@@ -41,15 +42,20 @@ export default (params) => {
 
   return (
     <>
-      <Button
-        as="div"
-        color="red"
-        floated="right"
-        size="tiny"
-        onClick={() => setConfirmOpen(true)}
-      >
-        <Icon name="trash" style={{ margin: 0 }} />
-      </Button>
+      <InvertedPopup
+        content={`Delete ${commentId ? 'Comment' : 'Post'}`}
+        trigger={
+          <Button
+            as="div"
+            color="red"
+            floated="right"
+            size="tiny"
+            onClick={() => setConfirmOpen(true)}
+          >
+            <Icon name="trash" style={{ margin: 0 }} />
+          </Button>
+        }
+      />
       <Confirm
         open={confirmOpen}
         onCancel={() => setConfirmOpen(false)}

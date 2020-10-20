@@ -4,6 +4,7 @@ import { Button, Icon, Label } from "semantic-ui-react";
 
 import { LIKE_POST } from "../utils/gqlQuerries";
 import { Link } from "react-router-dom";
+import InvertedPopup from "./InvertedPopup";
 
 export default ({ post: { id, likeCount, likes }, user }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -18,6 +19,7 @@ export default ({ post: { id, likeCount, likes }, user }) => {
     update(_, result) {
       setIsLiked(!isLiked);
     },
+    onError(_) {},
     variables: {
       postId: id,
     },
@@ -37,11 +39,16 @@ export default ({ post: { id, likeCount, likes }, user }) => {
   );
 
   return (
-    <Button as="div" labelPosition="right" onClick={likePost} >
-      {likeBtn}
-      <Label as="a" basic color="teal" pointing="left">
-        {likeCount}
-      </Label>
-    </Button>
+    <InvertedPopup
+      content="Like"
+      trigger={
+        <Button as="div" labelPosition="right" onClick={likePost}>
+          {likeBtn}
+          <Label as="a" basic color="teal" pointing="left">
+            {likeCount}
+          </Label>
+        </Button>
+      }
+    />
   );
 };

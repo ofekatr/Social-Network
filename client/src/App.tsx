@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
@@ -24,6 +24,7 @@ function App() {
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
           <Route exact path="/posts/:postId" component={SinglePost} />
+          <Redirect to="/"/>
         </Container>
       </Router>
     </AuthContextProvider>

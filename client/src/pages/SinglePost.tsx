@@ -4,6 +4,7 @@ import {
   Button,
   Card,
   CardContent,
+  Container,
   Grid,
   Icon,
   Image,
@@ -23,7 +24,7 @@ export default (props) => {
     variables: { postId },
   });
 
-  const deleteBtnCallback = () => props.history.push('/');
+  const deleteBtnCallback = () => props.history.push("/");
 
   let post;
   if (!loading) {
@@ -40,17 +41,17 @@ export default (props) => {
       comments,
     } = data.getPost;
     post = (
-      <div>
+      <Container>
         <Grid>
           <Grid.Row>
-            <Grid.Column width="2">
+            <Grid.Column width="3">
               <Image
                 src="https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
-                size="small"
+                // size="big"
                 floated="right"
               ></Image>
             </Grid.Column>
-            <Grid.Column width="10">
+            <Grid.Column width="10" style={{ marginTop: "15px" }}>
               <Card fluid>
                 <Card.Content>
                   <Card.Header>{username}</Card.Header>
@@ -73,7 +74,7 @@ export default (props) => {
                     </Label>
                   </Button>
                   {user && user.username === username && (
-                    <DeleteButton postId={id} callback={deleteBtnCallback}/>
+                    <DeleteButton postId={id} callback={deleteBtnCallback} />
                   )}
                 </CardContent>
               </Card>
@@ -81,7 +82,7 @@ export default (props) => {
           </Grid.Row>
         </Grid>
         <Comments id={id} comments={comments} user={user} />
-      </div>
+      </Container>
     );
   } else {
     post = <div className="loading"></div>;
