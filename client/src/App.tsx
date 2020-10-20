@@ -12,6 +12,7 @@ import Container from "./components/semantic-ui/Container";
 
 import { AuthContextProvider } from "./context/auth";
 import AuthRoute from "./components/AuthRoute";
+import SinglePost from "./pages/SinglePost";
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
         <Container>
           <Menubar />
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
+          <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
+          <Route exact path="/posts/:postId" component={SinglePost} />
         </Container>
       </Router>
     </AuthContextProvider>

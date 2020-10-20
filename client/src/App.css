@@ -14,3 +14,8 @@
     width: 40vw;
     height: 10vh;
 }
+
+.ui.teal.button:focus,
+.ui.teal.buttons .button:focus {
+  background-color: #00b5ad;
+}

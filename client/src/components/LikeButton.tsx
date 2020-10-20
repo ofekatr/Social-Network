@@ -26,27 +26,18 @@ export default ({ post: { id, likeCount, likes }, user }) => {
     like();
   }
 
-  const likeBtn = (
-    <div>
-      {user ? (
-        <Button
-          color="teal"
-          size="tiny"
-          onClick={likePost}
-          basic={!isLiked}
-        >
-          <Icon name="heart" />
-        </Button>
-      ) : (
-        <Button color="teal" size="tiny" basic as={Link} to="/login">
-          <Icon name="heart" />
-        </Button>
-      )}
-    </div>
+  const likeBtn = user ? (
+    <Button size="tiny" color="teal" basic={!isLiked}>
+      <Icon name="heart" />
+    </Button>
+  ) : (
+    <Button size="tiny" as={Link} to="/login" color="teal" basic>
+      <Icon name="heart" />
+    </Button>
   );
 
   return (
-    <Button as="div" labelPosition="right">
+    <Button as="div" labelPosition="right" onClick={likePost} >
       {likeBtn}
       <Label as="a" basic color="teal" pointing="left">
         {likeCount}

@@ -49,7 +49,7 @@ module.exports = gql`
   }
 
   input CommentInput {
-    postId: String!
+    postId: ID!
     body: String!
   }
 
@@ -67,8 +67,8 @@ module.exports = gql`
     login(loginInput: LoginInput!): User!
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
-    createComment(commentInput: CommentInput!): Comment!
-    deleteComment(postId: ID! commentId: ID!): Comment!
+    createComment(commentInput: CommentInput!): Post!
+    deleteComment(postId: ID! commentId: ID!): Post!
     likePost(postId: ID!): Post!
   }
 `;

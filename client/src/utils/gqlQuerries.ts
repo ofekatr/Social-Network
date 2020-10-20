@@ -95,10 +95,70 @@ const LIKE_POST = gql`
   }
 `;
 
+const FETCH_POST = gql`
+  query getPost($postId: ID!) {
+    getPost(postId: $postId) {
+      id
+      body
+      createdDate
+      username
+      likeCount
+      likeCount
+      likes {
+        username
+      }
+      commentCount
+      comments {
+        id
+        username
+        createdDate
+        body
+      }
+    }
+  }
+`;
+
+const DELETE_POST = gql`
+  mutation deletePost($postId: ID!) {
+    deletePost(postId: $postId)
+  }
+`;
+
+const DELETE_COMMENT = gql`
+  mutation deleteComment($postId: ID!, $commentId: ID!) {
+    deleteComment(postId: $postId, commentId: $commentId) {
+      id
+      comments {
+        id
+        username
+        createdDate
+        body
+      }
+      commentCount
+    }
+  }
+`;
+
+const CREATE_COMMENT = gql`
+mutation createComment($postId: ID!, $body: String!){
+  createComment(commentInput: {
+    postId: $postId,
+    body: $body
+  }){
+    id
+    commentCount
+  }
+}
+`;
+
 export {
   ADD_POST,
   FETCH_POSTS_QUERY,
   LOGIN_USER,
   REGISTER_USER,
-  LIKE_POST
+  LIKE_POST,
+  FETCH_POST,
+  DELETE_POST,
+  DELETE_COMMENT,
+  CREATE_COMMENT
 }

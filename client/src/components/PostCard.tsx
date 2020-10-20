@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { AuthContext } from "../context/auth";
 import LikeButton from "../components/LikeButton";
+import DeleteButton from "./DeleteButton";
 
 export default ({
   post: { body, createdDate, id, username, likeCount, commentCount, likes },
@@ -37,11 +38,7 @@ export default ({
             </Label>
           </Button>
           {user && user.username === username && (
-            <Button floated="right" as="div" labelPosition="right">
-              <Button color="red" size="tiny" basic>
-                <Icon name="trash" style={{ margin: 0 }} />
-              </Button>
-            </Button>
+            <DeleteButton postId={id} />
           )}
         </Card.Content>
       </Card>

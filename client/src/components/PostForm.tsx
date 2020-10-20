@@ -28,7 +28,7 @@ export default () => {
         query: FETCH_POSTS_QUERY,
         data,
       });
-      inputs.body = "";
+      inputs.body = '';
     },
     onError(err) {
       console.log(err.graphQLErrors[0].extensions!.exception.errors);
@@ -45,6 +45,7 @@ export default () => {
       <Form onSubmit={onSubmit} className={loading ? "loading" : "post-form"}>
         <Form.Input
           name="body"
+          value={inputs.body}
           type="text"
           placeholder={`${username}, What's on your mind?`}
           onChange={onChange}
@@ -57,9 +58,7 @@ export default () => {
       </Form>
       {error && (
         <div className="ui error message">
-          <ul className="list">
-            {error.graphQLErrors[0].message}
-          </ul>
+          <ul className="list">{error.graphQLErrors[0].message}</ul>
         </div>
       )}
     </div>

@@ -19,6 +19,6 @@ export const useForm = (callback: () => void, initState: any = {}) => {
       return {
         onChange,
         onSubmit,
-        inputs
+        inputs,
       };
 }
