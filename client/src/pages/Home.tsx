@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { Grid, Transition } from "semantic-ui-react";
+import { Card, Grid, Header, Transition } from "semantic-ui-react";
 
 import PostForm from "../components/PostForm";
 import { AuthContext } from "../context/auth";
@@ -12,35 +12,43 @@ export default () => {
   const { loading, data } = useQuery(FETCH_POSTS_QUERY);
   return (
     <div>
-      <Grid columns="three" divided>
-        <Grid.Row className="page-title">
-          <h1>Recent Posts</h1>
-        </Grid.Row>
-        <Grid.Row>
-          {user && (
-            <div>
-              <Grid.Column>
-                <PostForm />
+      <Card fluid>
+        <Card.Content>
+          <Grid columns="three" divided>
+            <Grid.Row className="page-title">
+              <Header color="teal">Recent Posts</Header>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column className="post-form">
+                {user && (
+                  <div>
+                    <Grid.Column>
+                      <PostForm />
+                    </Grid.Column>
+                  </div>
+                )}
               </Grid.Column>
-            </div>
-          )}
-        </Grid.Row>
-        <hr />
-        <Grid.Row>
-          {loading ? (
-            <h1>Loading...</h1>
-          ) : (
-            <Transition.Group>
-              {data.getPosts &&
-                data.getPosts.map((post: any) => (
-                  <Grid.Column key={post.id}>
-                    <PostCard post={post} />
-                  </Grid.Column>
-                ))}
-            </Transition.Group>
-          )}
-        </Grid.Row>
-      </Grid>
+            </Grid.Row>
+            <hr />
+            <Grid.Row>
+              {loading ? (
+                <h1>Loading...</h1>
+              ) : (
+                <Transition.Group>
+                  {data.getPosts &&
+                    data.getPosts.map((post: any) => (
+                      <Grid.Column key={post.id}>
+                        <div className="post-card">
+                          <PostCard post={post} />
+                        </div>
+                      </Grid.Column>
+                    ))}
+                </Transition.Group>
+              )}
+            </Grid.Row>
+          </Grid>
+        </Card.Content>
+      </Card>
     </div>
   );
 };

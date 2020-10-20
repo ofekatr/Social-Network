@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Card, Container, Form, Grid, Header } from "semantic-ui-react";
 
 import { useForm } from "../utils/hooks";
 import { AuthContext } from "../context/auth";
-import { LOGIN_USER } from '../utils/gqlQuerries';
+import { LOGIN_USER } from "../utils/gqlQuerries";
 
 export default (props) => {
   const context = useContext(AuthContext);
@@ -31,45 +31,72 @@ export default (props) => {
   }
 
   return (
-    <div className="form-container">
-      <Form
-        onSubmit={onSubmit}
-        noValidate
-        className={loading ? "loading" : "register-form"}
-      >
-        <Form.Input
-          name="username"
-          label="Username:"
-          placeholder="Username..."
-          type="text"
-          value={inputs.username}
-          onChange={onChange}
-          error={errors.username}
-        ></Form.Input>
-        <Form.Input
-          name="password"
-          label="Password:"
-          placeholder="Password..."
-          error={errors.password}
-          type="password"
-          value={inputs.password}
-          onChange={onChange}
-        ></Form.Input>
-        <div>
-          <Button type="submit" primary>
-            Register
-          </Button>
-        </div>
-      </Form>
-      {Object.keys(errors).length > 0 && (
-        <div className="ui error message">
-          <ul className="list">
-            {Object.values(errors).map((v) => (
-              <li key={v as string}>{v as string}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+    <Container>
+      <Grid flow columns="4">
+        <Grid.Column></Grid.Column>
+        <Grid.Column width="8">
+          <Card className="form" fluid>
+            <Grid flow>
+              <Grid.Row className="page-title">
+                <Header color="teal">Welcome Back!</  Header>
+              </Grid.Row>
+              <Grid.Row>
+                <div className="form-container">
+                  <Form
+                    onSubmit={onSubmit}
+                    noValidate
+                    className={loading ? "loading" : "register-form"}
+                  >
+                    <Form.Input
+                      name="username"
+                      label="Username:"
+                      placeholder="Username..."
+                      type="text"
+                      value={inputs.username}
+                      onChange={onChange}
+                      error={errors.username}
+                    ></Form.Input>
+                    <Form.Input
+                      name="password"
+                      label="Password:"
+                      placeholder="Password..."
+                      error={errors.password}
+                      type="password"
+                      value={inputs.password}
+                      onChange={onChange}
+                    ></Form.Input>
+                    <Grid>
+                      <Grid.Column
+                        textAlign="center"
+                        style={{ marginTop: "15px" }}
+                      >
+                        <div>
+                          <Button
+                            type="submit"
+                            primary
+                            style={{ marginBottom: "20px" }}
+                          >
+                            Login
+                          </Button>
+                        </div>
+                      </Grid.Column>
+                    </Grid>
+                  </Form>
+                  {Object.keys(errors).length > 0 && (
+                    <div className="ui error message">
+                      <ul className="list">
+                        {Object.values(errors).map((v) => (
+                          <li key={v as string}>{v as string}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </Grid.Row>
+            </Grid>
+          </Card>
+        </Grid.Column>
+      </Grid>
+    </Container>
   );
 };

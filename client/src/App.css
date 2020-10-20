@@ -1,18 +1,50 @@
-.page-title{
- display: block !important;
- text-align: center;
- font-size: 2rem;
- margin-top: 10px;   
+.bg {
+  background-image: url(/images/bg.jpg);
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#content {
+  height: 100vh;
+  background-color: lavender;
+  padding: 10px;
+}
+
+#menubar {
+  background-color: black;
+  opacity: 0.8;
+  border-radius: 6px !important;
+}
+
+.page-title {
+  display: block !important;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.post-form {
+  margin-left: 10px;
+}
+
+.post-card {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  margin-top: 10px;
 }
 
 .form-container {
-    width: 25vw;
-    margin: auto;
+  width: 25vw;
+  margin: auto;
 }
 
 .post-input {
-    width: 40vw;
-    height: 10vh;
+  width: 40vw;
+  height: 10vh;
 }
 
 .ui.teal.button:focus,

@@ -13,21 +13,25 @@ import Container from "./components/semantic-ui/Container";
 import { AuthContextProvider } from "./context/auth";
 import AuthRoute from "./components/AuthRoute";
 import SinglePost from "./pages/SinglePost";
+import { Card } from "semantic-ui-react";
 
 function App() {
   return (
-    <AuthContextProvider>
-      <Router>
-        <Container>
-          <Menubar />
-          <Route exact path="/" component={Home} />
-          <AuthRoute exact path="/login" component={Login} />
-          <AuthRoute exact path="/register" component={Register} />
-          <Route exact path="/posts/:postId" component={SinglePost} />
-          <Redirect to="/"/>
-        </Container>
-      </Router>
-    </AuthContextProvider>
+    <div className="bg">
+      <AuthContextProvider>
+        <Router>
+          <Container>
+            <Card id="content" fluid>
+              <Menubar />
+              <Route exact path="/" component={Home} />
+              <AuthRoute exact path="/login" component={Login} />
+              <AuthRoute exact path="/register" component={Register} />
+              <Route exact path="/posts/:postId" component={SinglePost} />
+            </Card>
+          </Container>
+        </Router>
+      </AuthContextProvider>
+    </div>
   );
 }
 
