@@ -146,6 +146,13 @@ mutation createComment($postId: ID!, $body: String!){
     body: $body
   }){
     id
+    comments {
+      id
+      username
+      body
+      createdDate
+      
+    }
     commentCount
   }
 }

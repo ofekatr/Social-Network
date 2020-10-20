@@ -1,16 +1,29 @@
 import { Button, Card, Form } from "semantic-ui-react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import moment from "moment";
 import DeleteButton from "./DeleteButton";
+import lodash from "lodash";
 
-import { CREATE_COMMENT } from "../utils/gqlQuerries";
+import { CREATE_COMMENT, FETCH_POST } from "../utils/gqlQuerries";
 import { useMutation } from "@apollo/react-hooks";
 
 export default ({ id: postId, comments, user }) => {
   const [commentBody, setCommentBody] = useState("");
+  const commentInputRef = useRef(null);
   const [create] = useMutation(CREATE_COMMENT, {
-    update() {
+    update(proxy, result: any) {
       setCommentBody("");
+      commentInputRef.current.blur();
+      const data = lodash.clondeDeep(
+        proxy.readQuery({
+          query: FETCH_POST,
+        })
+      );
+      data.getPost.comments.unshift(result.createPost);
+      proxy.writeQuery({
+        query: FETCH_POST,
+        data,
+      });
     },
     variables: { postId, body: commentBody },
   });
@@ -33,6 +46,7 @@ export default ({ id: postId, comments, user }) => {
                   name="commentBody"
                   value={commentBody}
                   onChange={(e) => setCommentBody(e.target.value)}
+                  ref={commentInputRef}
                 ></input>
                 <Button
                   type="submit"
