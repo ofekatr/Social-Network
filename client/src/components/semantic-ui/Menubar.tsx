@@ -78,6 +78,19 @@ function Menubar() {
             />
           }
         />
+        <InvertedPopup
+          position="top center"
+          content="Go to Repository!"
+          trigger={
+            <Menu.Item
+              icon="github"
+              size="big"
+              target="_blank"
+              style={menuItemStyle}
+              href="https://github.com/ofekatr/Social-Network"
+            />
+          }
+        />
       </Menu.Menu>
     </Menu>
   );

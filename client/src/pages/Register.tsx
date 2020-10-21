@@ -52,6 +52,7 @@ export default (props) => {
                     className={loading ? "loading" : "register-form"}
                   >
                     <Form.Input
+                      icon='user'
                       name="username"
                       label="Username:"
                       placeholder="Username..."
@@ -63,6 +64,7 @@ export default (props) => {
                     ></Form.Input>
                     <Form.Input
                       name="email"
+                      icon="envelope"
                       label="Email:"
                       placeholder="Email..."
                       type="email"
@@ -72,6 +74,7 @@ export default (props) => {
                     ></Form.Input>
                     <Form.Input
                       name="password"
+                      icon="lock"
                       label="Password:"
                       placeholder="Password..."
                       error={errors.password}
@@ -81,6 +84,7 @@ export default (props) => {
                     ></Form.Input>
                     <Form.Input
                       name="confirmPassword"
+                      icon="lock"
                       label="Confirm Password:"
                       placeholder="Confirm..."
                       type="password"

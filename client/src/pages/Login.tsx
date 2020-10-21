@@ -49,6 +49,7 @@ export default (props) => {
                   >
                     <Form.Input
                       name="username"
+                      icon="user"
                       label="Username:"
                       placeholder="Username..."
                       type="text"
@@ -58,6 +59,7 @@ export default (props) => {
                     ></Form.Input>
                     <Form.Input
                       name="password"
+                      icon="lock"
                       label="Password:"
                       placeholder="Password..."
                       error={errors.password}

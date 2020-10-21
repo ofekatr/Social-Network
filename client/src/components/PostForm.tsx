@@ -52,7 +52,7 @@ export default () => {
           className="form-container"
           error={!!error}
         />
-        <Button size="big" type="submit" color="teal">
+        <Button size="medium" type="submit" color="teal">
           Post
         </Button>
       </Form>
