@@ -8,3 +8,5 @@ Written in TypeScript, implemented with:
 * GraphQL
 
 Designed using Semantic-UI.
++++
+After registering or logging in, users can read, write and delete posts and comments.
