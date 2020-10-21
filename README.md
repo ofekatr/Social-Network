@@ -7,4 +7,4 @@ Written in TypeScript, implemented with:
 * Node
 * GraphQL
 
-Designed using Semanti-UI.
+Designed using Semantic-UI.
