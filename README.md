@@ -6,4 +6,5 @@ Written in TypeScript, implemented with:
 * React
 * Node
 * GraphQL
+---
 Designed using Semanti-UI.
