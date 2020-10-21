@@ -12,6 +12,7 @@ Written in TypeScript, implemented with:
 * GraphQL
 
 Server is deployed on Heroku, and client is on Netlify.
+
 Designed using Semantic-UI.
 
 ![Screenshot (2)](https://user-images.githubusercontent.com/46415136/96759467-c6922280-13e0-11eb-8369-21b7dd784fe5.png)
