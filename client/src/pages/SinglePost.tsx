@@ -20,14 +20,17 @@ import Comments from "../components/Comments";
 
 export default (props) => {
   const { postId } = props.match.params;
-  const { data, loading } = useQuery(FETCH_POST, {
+  const { data } = useQuery(FETCH_POST, {
+    onError(){
+      props.history.push("/");
+    },
     variables: { postId },
   });
 
   const deleteBtnCallback = () => props.history.push("/");
 
   let post;
-  if (!loading) {
+  if (data) {
     const { user } = useContext(AuthContext);
 
     const {
@@ -46,7 +49,7 @@ export default (props) => {
           <Grid.Row>
             <Grid.Column width="3">
               <Image
-                src="https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
+                src="https://semantic-ui.com/images/avatar2/large/matthew.png"
                 // size="big"
                 floated="right"
               ></Image>

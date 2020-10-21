@@ -20,7 +20,7 @@ export default ({
           <Image
             floated="right"
             size="mini"
-            src="https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
+            src="https://semantic-ui.com/images/avatar2/large/matthew.png"
           />
           <Card.Header>{username}</Card.Header>
           <Card.Meta>

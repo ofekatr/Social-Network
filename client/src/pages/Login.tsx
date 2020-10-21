@@ -35,10 +35,10 @@ export default (props) => {
       <Grid flow columns="4">
         <Grid.Column></Grid.Column>
         <Grid.Column width="8">
-          <Card className="form" fluid>
+          <Card style={{ borderRadius: "13px", padding:"15px" }} fluid>
             <Grid flow>
               <Grid.Row className="page-title">
-                <Header color="teal">Welcome Back!</  Header>
+                <Header color="teal">Welcome Back!</Header>
               </Grid.Row>
               <Grid.Row>
                 <div className="form-container">
@@ -87,8 +87,8 @@ export default (props) => {
                   {Object.keys(errors).length > 0 && (
                     <div className="ui error message">
                       <ul className="list">
-                        {Object.values(errors).map((v) => (
-                          <li key={v as string}>{v as string}</li>
+                        {Object.values(errors).map((value: any) => (
+                          <li key={value}>{value}</li>
                         ))}
                       </ul>
                     </div>

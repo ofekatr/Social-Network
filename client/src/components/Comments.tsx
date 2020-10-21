@@ -1,4 +1,4 @@
-import { Button, Card, Form, Transition } from "semantic-ui-react";
+import { Button, Card, Form, Grid, Transition } from "semantic-ui-react";
 import React, { useRef, useState } from "react";
 import moment from "moment";
 import DeleteButton from "./DeleteButton";
@@ -58,22 +58,31 @@ export default ({ id: postId, comments, user }) => {
               </div>
             </Form>
           </Card.Content>
+          <Card.Content extara>
+            <Grid columns="8">
+              <Grid.Column></Grid.Column>
+              <Grid.Column width="12">
+                <Transition.Group>
+                  {comments.map(({ id, username, createdDate, body }) => (
+                    <Card fluid id={id}>
+                      <Card.Content>
+                        {user &&
+                          user.username &&
+                          user.username === username && (
+                            <DeleteButton postId={postId} commentId={id} />
+                          )}
+                        <Card.Header>{username}</Card.Header>
+                        <Card.Meta>{moment(createdDate).fromNow()}</Card.Meta>
+                        <Card.Description>{body}</Card.Description>
+                      </Card.Content>
+                    </Card>
+                  ))}
+                </Transition.Group>
+              </Grid.Column>
+            </Grid>
+          </Card.Content>
         </Card>
       )}
-      <Transition.Group>
-        {comments.map(({ id, username, createdDate, body }) => (
-          <Card fluid id={id}>
-            <Card.Content>
-              {user && user.username && user.username === username && (
-                <DeleteButton postId={postId} commentId={id} />
-              )}
-              <Card.Header>{username}</Card.Header>
-              <Card.Meta>{moment(createdDate).fromNow()}</Card.Meta>
-              <Card.Description>{body}</Card.Description>
-            </Card.Content>
-          </Card>
-        ))}
-      </Transition.Group>
     </>
   );
 };

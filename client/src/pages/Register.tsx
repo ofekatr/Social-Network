@@ -39,7 +39,7 @@ export default (props) => {
       <Grid flow columns="4">
         <Grid.Column></Grid.Column>
         <Grid.Column width="8">
-          <Card className="form" fluid>
+          <Card style={{ borderRadius: "13px", padding:"15px" }} fluid>
             <Grid flow>
               <Grid.Row className="page-title">
                 <Header color="teal">Join Today!</Header>
