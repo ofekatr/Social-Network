@@ -1,4 +1,5 @@
 https://thirsty-tereshkova-d0c278.netlify.app/
+
 A social media platform application for posts.
 ---
 After logged in, users can read, write and delete posts and comments.
@@ -10,6 +11,7 @@ Written in TypeScript, implemented with:
 * Node
 * GraphQL
 
+Server is deployed on Heroku, and client is on Netlify.
 Designed using Semantic-UI.
 
 ![Screenshot (2)](https://user-images.githubusercontent.com/46415136/96759467-c6922280-13e0-11eb-8369-21b7dd784fe5.png)
