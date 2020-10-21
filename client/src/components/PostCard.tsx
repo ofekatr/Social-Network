@@ -16,14 +16,14 @@ export default ({
   return (
     <div>
       <Card fluid>
-        <Card.Content>
+        <Card.Content as={Link} to={`/posts/${id}`}>
           <Image
             floated="right"
             size="mini"
             src="https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
           />
           <Card.Header>{username}</Card.Header>
-          <Card.Meta as={Link} to={`/posts/${id}`}>
+          <Card.Meta>
             {moment(createdDate).fromNow()}
           </Card.Meta>
           <Card.Description>{body}</Card.Description>

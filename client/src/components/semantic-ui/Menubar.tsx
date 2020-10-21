@@ -87,7 +87,7 @@ function Menubar() {
               size="big"
               target="_blank"
               style={menuItemStyle}
-              href="https://github.com/ofekatr/Social-Network"
+              href="https://github.com/ofekatr/Social-Network"  
             />
           }
         />
