@@ -1,4 +1,5 @@
-https://thirsty-tereshkova-d0c278.netlify.app/
+https://thirsty-tereshkova-d0c278.netlify.app
+
 Currently fixing a Netlify error in the single post page routing. It can be seen in the images below.
 
 # A social media platform application for posts.
