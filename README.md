@@ -17,7 +17,7 @@ Server is deployed on Heroku, and client is on Netlify.
 
 Designed using Semantic-UI.
 
-![Screenshot (2)](https://user-images.githubusercontent.com/46415136/96759467-c6922280-13e0-11eb-8369-21b7dd784fe5.png)
+![Screenshot (6)](https://user-images.githubusercontent.com/46415136/96858455-f422ae80-1468-11eb-9adc-227c594c8d6e.png)
 
 ![Screenshot (3)](https://user-images.githubusercontent.com/46415136/96759510-d578d500-13e0-11eb-8d95-5ce360896881.png)
 
