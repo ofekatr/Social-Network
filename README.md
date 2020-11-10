@@ -4,7 +4,7 @@ https://practical-booth-49cdf6.netlify.app
 ---
 Once logged in, users can read, write and delete posts and comments.
 
-Written in TypeScript, implemented with:
+A full stack app, written in TypeScript, implemented with:
 * MongoDB
 * Express
 * React
